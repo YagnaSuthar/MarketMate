@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Users, TrendingUp, Shield, Clock, Star, Package, Zap, Globe, ArrowRight, Check, Play } from 'lucide-react';
 import { Link , NavLink} from 'react-router-dom';
 import "../Components/landingpage.css"
+import Header from './Navbar.jsx'
 
 const MarketMateLanding = () => {
   const [activeSection, setActiveSection] = useState(0);
@@ -55,7 +56,7 @@ const MarketMateLanding = () => {
       <StarIcon className="star-3-landingpage" />
 
       {/* Header */}
-      <header className="header-landingpage">
+      {/* <header className="header-landingpage">
         <div className="container-landingpage">
           <div className="header-content-landingpage">
             <div className="logo-landingpage">
@@ -87,7 +88,9 @@ const MarketMateLanding = () => {
             </div>
           </div>
         </div>
-      </header>
+      </header> */}
+
+      <Header/>
 
       {/* Hero Section */}
       <section id="hero" className="hero-section-landingpage">

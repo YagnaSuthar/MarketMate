@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import '../Components/login.css';
+import Header from './Navbar';
+
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -13,7 +15,11 @@ function Login() {
   };
 
   return (
+<>
+    <Header/>
     <div className="container-login">
+      
+
       <h2 className="login-title">Login</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group-login">
@@ -63,6 +69,7 @@ function Login() {
         <p>Don’t have an account? <a href="/signup" className="signup-link-login">Sign Up</a></p>
       </div>
     </div>
+</>    
   );
 }
 
