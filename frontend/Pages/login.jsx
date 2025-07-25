@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../src/App.jsx';
+import '../Components/login.css';
 
 const Login = () => {
   const [form, setForm] = useState({ email: '', password: '' });
@@ -32,14 +33,49 @@ const Login = () => {
   };
 
   return (
-    <div style={{ maxWidth: 400, margin: '5vh auto', padding: 20, border: '1px solid #ccc', borderRadius: 8 }}>
-      <h2>Login</h2>
+    <div className="container-login">
+      <h2 className="login-title">Login</h2>
       <form onSubmit={handleSubmit}>
-        <input name="email" type="email" placeholder="Email" value={form.email} onChange={handleChange} required style={{ width: '100%', marginBottom: 10 }} />
-        <input name="password" type="password" placeholder="Password" value={form.password} onChange={handleChange} required style={{ width: '100%', marginBottom: 10 }} />
-        <button type="submit" style={{ width: '100%' }}>Login</button>
+        <div className="form-group-login">
+          <label className="label-login" htmlFor="email">Email</label>
+          <input
+            className="input-login"
+            id="email"
+            name="email"
+            type="email"
+            placeholder="Email"
+            value={form.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group-login">
+          <label className="label-login" htmlFor="password">Password</label>
+          <input
+            className="input-login"
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={form.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-options-login">
+          <label>
+            <input type="checkbox" />
+            Remember Me
+          </label>
+          <a href="#" className="forgot-link-login">Forgot Password?</a>
+        </div>
+        <button type="submit" className="btn-login">Login</button>
         {error && <div style={{ color: 'red', marginTop: 10 }}>{error}</div>}
       </form>
+      <div className="signup-prompt-login">
+        Don’t have an account?{' '}
+        <a href="/signup" className="signup-link-login">Sign Up</a>
+      </div>
     </div>
   );
 };
