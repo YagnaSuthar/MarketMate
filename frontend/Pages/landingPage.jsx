@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Users, TrendingUp, Shield, Clock, Star, Package, Zap, Globe, ArrowRight, Check, Play } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link , NavLink} from 'react-router-dom';
 import "../Components/landingpage.css"
 
 const MarketMateLanding = () => {
@@ -74,12 +74,16 @@ const MarketMateLanding = () => {
             </nav>
             
             <div className="auth-buttons-landingpage">
+              <NavLink to = {"/login"}>
               <button className="btn-landingpage btn-outline-landingpage">
                 Sign in
               </button>
+              </NavLink>
+              <NavLink to = {"/signup"}>
               <button className="btn-landingpage btn-primary-landingpage">
                 Sign up
               </button>
+              </NavLink>
             </div>
           </div>
         </div>
@@ -101,10 +105,11 @@ const MarketMateLanding = () => {
               Connect buyers and suppliers on MarketMate, the platform dedicated 
               to every trader at every level.
             </p>
-            
+           <NavLink to = {"/login"}>
             <button className="btn-landingpage btn-hero-landingpage">
               Get Started
             </button>
+            </NavLink> 
           </div>
           
           {/* Floating Icons */}
