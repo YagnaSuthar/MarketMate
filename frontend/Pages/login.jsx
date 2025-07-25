@@ -1,76 +1,47 @@
-import React, { useState } from 'react';
-import '../Components/login.css';
-import Header from './Navbar';
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../src/App.jsx';
 
+const Login = () => {
+  const [form, setForm] = useState({ email: '', password: '' });
+  const [error, setError] = useState('');
+  const { setAuth } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [remember, setRemember] = useState(false);
+  const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    console.log({ email, password, remember });
-    // Add login API call here
+    setError('');
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.msg || 'Login failed');
+      localStorage.setItem('user', JSON.stringify(data.user));
+      setAuth({ user: data.user });
+      if (data.user.role === 'vendor') navigate('/vendor');
+      else if (data.user.role === 'supplier') navigate('/supplier');
+      else navigate('/');
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   return (
-<>
-    <Header/>
-    <div className="container-login">
-      
-
-      <h2 className="login-title">Login</h2>
+    <div style={{ maxWidth: 400, margin: '5vh auto', padding: 20, border: '1px solid #ccc', borderRadius: 8 }}>
+      <h2>Login</h2>
       <form onSubmit={handleSubmit}>
-        <div className="form-group-login">
-          <label className="label-login" htmlFor="email">Email</label>
-          <input
-            className="input-login"
-            type="email"
-            id="email"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-
-        <div className="form-group-login">
-          <label className="label-login" htmlFor="password">Password</label>
-          <input
-            className="input-login"
-            type="password"
-            id="password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-
-        <div className="form-options-login">
-          <label>
-            <input
-              type="checkbox"
-              checked={remember}
-              onChange={(e) => setRemember(e.target.checked)}
-            />
-            Remember Me
-          </label>
-          <a href="/forgot-password" className="forgot-link-login">
-            Forgot Password?
-          </a>
-        </div>
-
-        <button className="btn-login" type="submit">Login</button>
+        <input name="email" type="email" placeholder="Email" value={form.email} onChange={handleChange} required style={{ width: '100%', marginBottom: 10 }} />
+        <input name="password" type="password" placeholder="Password" value={form.password} onChange={handleChange} required style={{ width: '100%', marginBottom: 10 }} />
+        <button type="submit" style={{ width: '100%' }}>Login</button>
+        {error && <div style={{ color: 'red', marginTop: 10 }}>{error}</div>}
       </form>
-
-      <div className="signup-prompt-login">
-        <p>Don’t have an account? <a href="/signup" className="signup-link-login">Sign Up</a></p>
-      </div>
     </div>
-</>    
   );
-}
+};
 
 export default Login;

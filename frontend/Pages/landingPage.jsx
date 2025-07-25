@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { ShoppingCart, Users, TrendingUp, Shield, Clock, Star, Package, Zap, Globe, ArrowRight, Check, Play } from 'lucide-react';
-import { Link , NavLink} from 'react-router-dom';
-import "../Components/landingpage.css"
-import Header from './Navbar.jsx'
+import { ShoppingCart, Users, TrendingUp, Shield, Clock, Package, Zap, Globe, Check } from 'lucide-react';
+import { NavLink } from 'react-router-dom';
+import "../Components/landingPage.css";
+import Header from './Navbar.jsx';
 
 const MarketMateLanding = () => {
   const [activeSection, setActiveSection] = useState(0);
@@ -50,46 +50,11 @@ const MarketMateLanding = () => {
       <FloatingOrb className="orb-2-landingpage" size="medium" delay={1} />
       <FloatingOrb className="orb-3-landingpage" size="xlarge" delay={2} />
       <FloatingOrb className="orb-4-landingpage" size="medium" delay={0.5} />
-      
       <StarIcon className="star-1-landingpage" />
       <StarIcon className="star-2-landingpage" />
       <StarIcon className="star-3-landingpage" />
 
       {/* Header */}
-      {/* <header className="header-landingpage">
-        <div className="container-landingpage">
-          <div className="header-content-landingpage">
-            <div className="logo-landingpage">
-              <div className="logo-icon-landingpage">
-                <ShoppingCart className="icon-landingpage" />
-              </div>
-              <span className="logo-text-landingpage">MARKETMATE</span>
-            </div>
-            
-            <nav className="nav-landingpage">
-              <a href="#" className="nav-link-landingpage">Buy</a>
-              <a href="#" className="nav-link-landingpage">Sell</a>
-              <a href="#" className="nav-link-landingpage">Markets</a>
-              <a href="#" className="nav-link-landingpage">Business</a>
-              <a href="#" className="nav-link-landingpage">Support</a>
-            </nav>
-            
-            <div className="auth-buttons-landingpage">
-              <NavLink to = {"/login"}>
-              <button className="btn-landingpage btn-outline-landingpage">
-                Sign in
-              </button>
-              </NavLink>
-              <NavLink to = {"/signup"}>
-              <button className="btn-landingpage btn-primary-landingpage">
-                Sign up
-              </button>
-              </NavLink>
-            </div>
-          </div>
-        </div>
-      </header> */}
-
       <Header/>
 
       {/* Hero Section */}
@@ -97,24 +62,29 @@ const MarketMateLanding = () => {
         <div className="container-landingpage">
           <div className="hero-content-landingpage">
             <h1 className="hero-title-landingpage">
-              We make e-commerce
+              Smart Sourcing for 
               <br />
               <span className="gradient-text-landingpage">
-                clear and simple
+                Street Food Vendors
               </span>
             </h1>
-            
             <p className="hero-subtitle-landingpage">
               Connect buyers and suppliers on MarketMate, the platform dedicated 
               to every trader at every level.
             </p>
-           <NavLink to = {"/login"}>
-            <button className="btn-landingpage btn-hero-landingpage">
-              Get Started
-            </button>
-            </NavLink> 
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: 20 }}>
+              <NavLink to="/login">
+                <button className="btn-landingpage btn-outline-landingpage">
+                  Sign in
+                </button>
+              </NavLink>
+              <NavLink to="/signup">
+                <button className="btn-landingpage btn-primary-landingpage">
+                  Sign up
+                </button>
+              </NavLink>
+            </div>
           </div>
-          
           {/* Floating Icons */}
           <div className="floating-icon-landingpage icon-1-landingpage">
             <Package className="icon-landingpage" />
@@ -141,7 +111,6 @@ const MarketMateLanding = () => {
                 Advanced tools for buyers to discover, compare, and purchase products from verified suppliers worldwide.
               </p>
             </div>
-            
             <div className="feature-card-landingpage">
               <div className="feature-icon-landingpage green-gradient-landingpage">
                 <Package className="icon-landingpage" />
@@ -151,7 +120,6 @@ const MarketMateLanding = () => {
                 Comprehensive platform for suppliers to showcase products, manage inventory, and connect with global buyers.
               </p>
             </div>
-            
             <div className="feature-card-landingpage">
               <div className="feature-icon-landingpage orange-gradient-landingpage">
                 <Shield className="icon-landingpage" />
@@ -176,11 +144,9 @@ const MarketMateLanding = () => {
                 that connects with you
               </span>
             </h2>
-            
             <p className="section-subtitle-landingpage">
               Join thousands of buyers and suppliers building successful businesses on MarketMate
             </p>
-            
             <button className="btn-landingpage btn-primary-landingpage">
               Start Trading
             </button>
@@ -196,7 +162,6 @@ const MarketMateLanding = () => {
               <div className="support-icon-landingpage">
                 <Clock className="icon-landingpage" />
               </div>
-              
               <h2 className="support-title-landingpage">
                 24/7 access to full
                 <br />
@@ -204,12 +169,10 @@ const MarketMateLanding = () => {
                 <br />
                 <span className="gradient-text-landingpage">support</span>
               </h2>
-              
               <button className="btn-landingpage btn-primary-landingpage">
                 Contact Us
               </button>
             </div>
-            
             <div className="support-right-landingpage">
               <div className="stats-card-landingpage">
                 <div className="stat-item-landingpage">
@@ -240,7 +203,6 @@ const MarketMateLanding = () => {
               <span className="gradient-text-landingpage">fees in the industry</span>
             </h2>
           </div>
-          
           <div className="fees-card-landingpage">
             <div className="fees-grid-landingpage">
               <div className="fee-item-landingpage">
@@ -276,7 +238,6 @@ const MarketMateLanding = () => {
                 <br />
                 <span className="gradient-text-landingpage">marketplace trading</span>
               </h2>
-              
               <div className="benefits-list-landingpage">
                 <div className="benefit-item-landingpage">
                   <Check className="check-icon-landingpage" />
@@ -291,12 +252,10 @@ const MarketMateLanding = () => {
                   <span>Global shipping solutions</span>
                 </div>
               </div>
-              
               <button className="btn-landingpage btn-hero-landingpage">
                 Join MarketMate
               </button>
             </div>
-            
             <div className="start-right-landingpage">
               <div className="globe-container-landingpage">
                 <div className="globe-main-landingpage">
@@ -321,7 +280,6 @@ const MarketMateLanding = () => {
               </div>
               <span className="logo-text-landingpage">MARKETMATE</span>
             </div>
-            
             <div className="footer-links-landingpage">
               <a href="#" className="footer-link-landingpage">Privacy</a>
               <a href="#" className="footer-link-landingpage">Terms</a>
@@ -329,7 +287,6 @@ const MarketMateLanding = () => {
               <a href="#" className="footer-link-landingpage">About</a>
             </div>
           </div>
-          
           <div className="footer-copyright-landingpage">
             © 2025 MarketMate. All rights reserved.
           </div>

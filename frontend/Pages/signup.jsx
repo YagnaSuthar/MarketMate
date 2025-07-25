@@ -1,139 +1,51 @@
-import React, { useState } from "react";
-import "../Components/sign-up.css";
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../src/App.jsx';
 
-function Signup() {
-  const [role, setRole] = useState("vendor"); // Default to vendor
+const Signup = () => {
+  const [role, setRole] = useState('vendor');
+  const [form, setForm] = useState({ name: '', email: '', password: '' });
+  const [error, setError] = useState('');
+  const { setAuth } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleSubmit = async e => {
     e.preventDefault();
-    // Handle signup logic here
-    alert(`Signing up as ${role}`);
+    setError('');
+    try {
+      const res = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...form, role }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.msg || 'Signup failed');
+      localStorage.setItem('user', JSON.stringify(data.user));
+      setAuth({ user: data.user });
+      navigate(role === 'vendor' ? '/vendor' : '/supplier');
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   return (
-    <div className="container-signup">
-      <h2 className="signup-title">Create Account</h2>
-
-      {/* Role Selection Buttons */}
-      <div className="role-toggle-signup">
-        <button
-          className={`btn-role-signup ${role === "vendor" ? "active" : ""}`}
-          onClick={() => setRole("vendor")}
-          type="button"
-        >
-          Vendor
-        </button>
-        <button
-          className={`btn-role-signup ${role === "supplier" ? "active" : ""}`}
-          onClick={() => setRole("supplier")}
-          type="button"
-        >
-          Supplier
-        </button>
+    <div style={{ maxWidth: 400, margin: '5vh auto', padding: 20, border: '1px solid #ccc', borderRadius: 8 }}>
+      <h2>Sign Up</h2>
+      <div>
+        <button onClick={() => setRole('vendor')} style={{ background: role === 'vendor' ? '#333' : '#eee', color: role === 'vendor' ? '#fff' : '#000', marginRight: 10 }}>Vendor</button>
+        <button onClick={() => setRole('supplier')} style={{ background: role === 'supplier' ? '#333' : '#eee', color: role === 'supplier' ? '#fff' : '#000' }}>Supplier</button>
       </div>
-
-      {/* Signup Form */}
-      <form onSubmit={handleSubmit} className="form-signup">
-        {role === "vendor" && (
-          <>
-            <div className="form-group-signup">
-              <label className="label-signup" htmlFor="vendorName">
-                Vendor Name
-              </label>
-              <input
-                className="input-signup"
-                type="text"
-                id="vendorName"
-                name="vendorName"
-                required
-              />
-            </div>
-            <div className="form-group-signup">
-              <label className="label-signup" htmlFor="vendorEmail">
-                Email
-              </label>
-              <input
-                className="input-signup"
-                type="email"
-                id="vendorEmail"
-                name="vendorEmail"
-                required
-              />
-            </div>
-            <div className="form-group-signup">
-              <label className="label-signup" htmlFor="vendorPassword">
-                Password
-              </label>
-              <input
-                className="input-signup"
-                type="password"
-                id="vendorPassword"
-                name="vendorPassword"
-                required
-              />
-            </div>
-          </>
-        )}
-
-        {role === "supplier" && (
-          <>
-            <div className="form-group-signup">
-              <label className="label-signup" htmlFor="supplierName">
-                Supplier Name
-              </label>
-              <input
-                className="input-signup"
-                type="text"
-                id="supplierName"
-                name="supplierName"
-                required
-              />
-            </div>
-            <div className="form-group-signup">
-              <label className="label-signup" htmlFor="supplierEmail">
-                Email
-              </label>
-              <input
-                className="input-signup"
-                type="email"
-                id="supplierEmail"
-                name="supplierEmail"
-                required
-              />
-            </div>
-            <div className="form-group-signup">
-              <label className="label-signup" htmlFor="supplierPassword">
-                Password
-              </label>
-              <input
-                className="input-signup"
-                type="password"
-                id="supplierPassword"
-                name="supplierPassword"
-                required
-              />
-            </div>
-            <div className="form-group-signup">
-              <label className="label-signup" htmlFor="companyName">
-                Company Name
-              </label>
-              <input
-                className="input-signup"
-                type="text"
-                id="companyName"
-                name="companyName"
-                required
-              />
-            </div>
-          </>
-        )}
-
-        <button className="btn-signup" type="submit">
-          Sign Up as {role === "vendor" ? "Vendor" : "Supplier"}
-        </button>
+      <form onSubmit={handleSubmit} style={{ marginTop: 20 }}>
+        <input name="name" placeholder="Name" value={form.name} onChange={handleChange} required style={{ width: '100%', marginBottom: 10 }} />
+        <input name="email" type="email" placeholder="Email" value={form.email} onChange={handleChange} required style={{ width: '100%', marginBottom: 10 }} />
+        <input name="password" type="password" placeholder="Password" value={form.password} onChange={handleChange} required style={{ width: '100%', marginBottom: 10 }} />
+        <button type="submit" style={{ width: '100%' }}>Sign Up as {role.charAt(0).toUpperCase() + role.slice(1)}</button>
+        {error && <div style={{ color: 'red', marginTop: 10 }}>{error}</div>}
       </form>
     </div>
   );
-}
+};
 
 export default Signup;
