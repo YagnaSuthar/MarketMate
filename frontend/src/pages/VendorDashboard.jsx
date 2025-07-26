@@ -4,6 +4,8 @@ import Header from '../components/common/Header';
 import Sidebar from '../components/common/Sidebar';
 import Footer from '../components/common/Footer';
 import styles from '../styles/VendorDashboard.module.css';
+import ProductList from './ProductList';
+
 
 // Placeholder components for different sections
 const DashboardOverview = () => (
@@ -30,12 +32,11 @@ const DashboardOverview = () => (
   </div>
 );
 
-const Products = () => <div>Browse Raw Materials</div>;
 const Suppliers = () => <div>Search Suppliers</div>;
 const Orders = () => <div>Order Management</div>;
 const Analytics = () => <div>Analytics</div>;
-const Chat = () => <div>Communication Hub</div>;
-const Notifications = () => <div>Notifications</div>;
+
+
 
 const VendorDashboard = () => {
   return (
@@ -47,12 +48,15 @@ const VendorDashboard = () => {
           <Routes>
             <Route path="/" element={<DashboardOverview />} />
             <Route path="/dashboard" element={<DashboardOverview />} />
-            <Route path="/products" element={<Products />} />
+            <Route path="/products" element={<ProductList />} /> 
+            {/* dashboard - vendor brows raw _material  */}
+           
             <Route path="/suppliers" element={<Suppliers />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/analytics" element={<Analytics />} />
-            <Route path="/chat" element={<Chat />} />
-            <Route path="/notifications" element={<Notifications />} />
+  
+         
+            
           </Routes>
         </main>
       </div>

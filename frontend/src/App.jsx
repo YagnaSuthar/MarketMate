@@ -25,6 +25,7 @@ const App = () => {
               {/* Protected Vendor Routes */}
               <Route element={<PrivateRoute allowedRoles={['vendor']} />}>
                 <Route path="/vendor/*" element={<VendorDashboard />} />
+           
               </Route>
               
               {/* Protected Supplier Routes */}

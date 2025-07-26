@@ -4,6 +4,7 @@ import Header from '../components/common/Header';
 import Sidebar from '../components/common/Sidebar';
 import Footer from '../components/common/Footer';
 import styles from '../styles/SupplierDashboard.module.css';
+import AddProductForm from './AddProductForm';
 
 // Placeholder components for different sections
 const DashboardOverview = () => (
@@ -31,6 +32,7 @@ const DashboardOverview = () => (
 );
 
 const Products = () => <div>Product Catalog Management</div>;
+
 const Orders = () => <div>Order Management</div>;
 const Customers = () => <div>Customer Management</div>;
 const Analytics = () => <div>Analytics & Reporting</div>;
@@ -50,6 +52,7 @@ const SupplierDashboard = () => {
             <Route path="/products" element={<Products />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/customers" element={<Customers />} />
+            <Route path="/add_product" element={<AddProductForm />} />
             <Route path="/analytics" element={<Analytics />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="/trust-score" element={<TrustScore />} />

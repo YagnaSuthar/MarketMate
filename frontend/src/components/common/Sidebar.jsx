@@ -20,6 +20,7 @@ const Sidebar = () => {
   const supplierMenuItems = [
     { path: '/supplier/dashboard', label: 'Dashboard', icon: '📊' },
     { path: '/supplier/products', label: 'Product Catalog', icon: '📋' },
+    { path: '/supplier/add_product', label: 'AddProduct', icon: '📋' },
     { path: '/supplier/orders', label: 'Order Management', icon: '📦' },
     { path: '/supplier/customers', label: 'Customers', icon: '👥' },
     { path: '/supplier/analytics', label: 'Analytics', icon: '📈' },
