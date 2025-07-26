@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import styles from '../styles/Register.module.css';
+import Header from '../../Pages/Navbar.jsx';
 
 const Register = () => {
   const { login } = useContext(AuthContext);
@@ -35,6 +36,14 @@ const Register = () => {
 
   return (
     <div className={styles.register}>
+      {/* Navbar */}
+      <Header />
+      
+      {/* Animated Background Elements */}
+      <div className={styles.register__bg_element}></div>
+      <div className={styles.register__bg_element}></div>
+      <div className={styles.register__bg_element}></div>
+      
       <form className={styles.register__form} onSubmit={handleSubmit}>
         <h2 className={styles.register__title}>Register</h2>
         {error && <div className={styles.register__error}>{error}</div>}

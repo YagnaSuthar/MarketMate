@@ -78,7 +78,7 @@ const MarketMateLanding = () => {
                   Sign in
                 </button>
               </NavLink>
-              <NavLink to="/signup">
+              <NavLink to="/register">
                 <button className="btn-landingpage btn-primary-landingpage">
                   Sign up
                 </button>

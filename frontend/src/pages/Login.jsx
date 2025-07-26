@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import styles from '../styles/Login.module.css';
+import Header from '../../Pages/Navbar.jsx';
 
 const Login = () => {
   const { login } = useContext(AuthContext);
@@ -33,6 +34,14 @@ const Login = () => {
 
   return (
     <div className={styles.login}>
+      {/* Navbar */}
+      <Header />
+      
+      {/* Animated Background Elements */}
+      <div className={styles.login__bg_element}></div>
+      <div className={styles.login__bg_element}></div>
+      <div className={styles.login__bg_element}></div>
+      
       <form className={styles.login__form} onSubmit={handleSubmit}>
         <h2 className={styles.login__title}>Sign In</h2>
         {error && <div className={styles.login__error}>{error}</div>}

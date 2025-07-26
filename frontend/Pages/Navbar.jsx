@@ -1,9 +1,13 @@
 import React from "react";
-import { Link , NavLink} from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { ShoppingCart } from "lucide-react"; // Make sure lucide-react is installed
 import "../Components/Navbar.css"; // Your CSS file
 
 const Header = () => {
+  const location = useLocation();
+  const isLoginPage = location.pathname === '/login';
+  const isRegisterPage = location.pathname === '/register';
+
   return (
     <header className="header-landingpage">
       <div className="container-landingpage">
@@ -24,16 +28,20 @@ const Header = () => {
             </nav>
             
             <div className="auth-buttons-landingpage">
-              <NavLink to = {"/login"}>
-              <button className="btn-landingpage btn-outline-landingpage">
-                Sign in
-              </button>
-              </NavLink>
-              <NavLink to = {"/signup"}>
-              <button className="btn-landingpage btn-primary-landingpage">
-                Sign up
-              </button>
-              </NavLink>
+              {!isLoginPage && (
+                <NavLink to="/login">
+                  <button className={`btn-landingpage ${isRegisterPage ? 'btn-primary-landingpage' : 'btn-outline-landingpage'}`}>
+                    {isRegisterPage ? 'Login' : 'Sign in'}
+                  </button>
+                </NavLink>
+              )}
+              {!isRegisterPage && (
+                <NavLink to="/register">
+                  <button className="btn-landingpage btn-primary-landingpage">
+                    Sign up
+                  </button>
+                </NavLink>
+              )}
             </div>
           </div>
         </div>
